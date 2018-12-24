@@ -11,7 +11,7 @@ module.exports = {
     output:{
         path:appPaths.outputPath,
         chunkFilename: 'js/[name].[chunkhash:8].js', //这是根据路由打包不同的模块,按需加载
-        filename:'bundle.js'
+        filename:'js/bundle.js'
     },
     resolve:{
         extensions:['.js','.jxs']
@@ -35,9 +35,14 @@ module.exports = {
                 loader:[//use
                     {loader:'style-loader'},
                     {loader:'css-loader'},
+                    // {loader:'px2rem-loader'},
                     {loader:'postcss-loader',options:{
-                        plugins:[require('autoprefixer')("last 10 versions")],
+                        plugins:[
+                            require('autoprefixer')("last 10 versions"),
+                            require('px2rem')
+                        ],
                         // browser:['last 10 versions'] //这样写不生效，传入上面写法生效，必须传versions生效
+
                     }},
                     {loader:'less-loader'}
                 ]
@@ -49,6 +54,7 @@ module.exports = {
                 loader:[//use
                     {loader:'style-loader'},
                     {loader:'css-loader'},
+                    // {loader:'px2rem-loader'},
                     {loader:'postcss-loader',options:{
                         plugins:(loader) => [
                             require('autoprefixer')("last 10 versions")

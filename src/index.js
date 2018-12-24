@@ -5,6 +5,7 @@ import createHistory from 'history/createBrowserHistory';
 import {Provider} from 'react-redux';
 import createStore from './app/store/createStore';
 const history = createHistory();
+
 const store = createStore();
 render(
     <Provider store={store}>

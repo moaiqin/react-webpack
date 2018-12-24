@@ -1,13 +1,12 @@
-import {createStore, combineReducers,applyMiddleware} from 'redux';
+import {createStore, combineReducers,applyMiddleware,compose} from 'redux';
 import reducers from '../reducers/index';
 import storeApplyMiddleware from '../middleware/api';
 import thunk from 'redux-thunk';
-const createStoreFn = (initialState) => {
-    return createStore(combineReducers({
-            ...reducers
-        }),
-        window.devToolsExtension ? window.devToolsExtension():undefined,
-        applyMiddleware(thunk,storeApplyMiddleware)
+const createStoreFn = () => {
+    return createStore(
+        combineReducers(reducers),
+        compose(applyMiddleware(thunk,storeApplyMiddleware),window.devToolsExtension? window.devToolsExtension():undefined)
     )
 }
+
 export default createStoreFn;

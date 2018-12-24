@@ -6,7 +6,7 @@ class Search extends Component{
         router: PropTypes.object
     }
     render(){
-        console.log(this.context)
+        console.log(this.props,'this.context')
         return (
             <div className="search">
                 <h1>这里是收缩界面</h1>

@@ -1,11 +1,8 @@
-export const test = (params,showLoading) => {
-    console.log(params)
-    return {
+export const test = (params,showLoading) => (dispatch, getState) => {
+    return dispatch({
         type:'TEST',
-        data:{
-            errmsg:'出错了',
-            errcode:110,
-            ...params
-        }
-    }    
+        ...params,
+        showLoading,
+        ai:'lianyanqin'
+    })
 }
