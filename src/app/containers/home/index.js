@@ -25,9 +25,9 @@ class Home extends Component{
         return (
             <div className="shouye">
                 这里是首页
-                <a href="javascript:;" onClick = {this.goSearch.bind(this)}>跳到搜索页</a>
+                <button href="javascript:;" onClick = {this.goSearch.bind(this)}>跳到搜索页</button>
                 <br/>
-                <a href="javascript:;" onClick = {this.test.bind(this)}>点击调用</a>
+                <button href="javascript:;" onClick = {this.test.bind(this)}>点击调用</button>
                 {/* <div onClick={this.testLoading.bind(this)}>showLoading,err测试</div> */}
             </div>
         );
