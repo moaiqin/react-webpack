@@ -3,7 +3,7 @@ import App from '../containers/index';
 import AsyncComponent from '../uitls/asyncComponent';
 import {
   Route,
-  BrowserRouter,
+//   BrowserRouter,
   Switch,
   Router
 } from 'react-router-dom';

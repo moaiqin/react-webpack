@@ -3,8 +3,12 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import * as Re from '../../actions/test';
 import './index.less';
-import {testByClass,decoratorByProp,decoratorByClass,decoratorByClass1,decoratorByClass2} from '../../uitls/index';
-import showLoading from '../../reducers/configInfo/showLoading';
+import {
+    //testByClass,
+    decoratorByProp,
+    //decoratorByClass,
+    decoratorByClass1,decoratorByClass2} from '../../uitls/index';
+// import showLoading from '../../reducers/configInfo/showLoading';
 
     
 // @testByClass
