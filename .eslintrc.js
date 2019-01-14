@@ -3,8 +3,8 @@ module.exports = {
         "browser": true,
         "es6": true
     },
-    "parser":"babel-eslint",
-    "extends":"react-app",   //不然import，修饰器，等等慧报错，所以引入继承的规则
+    "parser":"babel-eslint", //
+    // "extends":"react-app",   //不然import，修饰器，等等慧报错，所以引入继承的规则
     "parserOptions": {
         "ecmaFeatures": {
             "jsx": true
