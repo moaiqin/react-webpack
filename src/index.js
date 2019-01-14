@@ -9,6 +9,7 @@ const history = createHistory();
 const store = createStore();
 const test = () => {
     console.log(100)
+    alert(100)
     console.log('moshaobu')
 }
 test();
