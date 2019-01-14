@@ -9,7 +9,6 @@ const TestReducer = (state = {
                 ...state,
                 ...action.data
             }
-        break;
         default:
             return {
                 ...state
