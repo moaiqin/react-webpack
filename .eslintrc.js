@@ -19,6 +19,10 @@ module.exports = {
         // "no-alert": 2,
         // "no-console":2
         "eqeqeq":0,
-        "no-script-url":0
+        "no-script-url":0,
+        "jsx-a11y/anchor-has-content": "off",
+        "jsx-a11y/alt-text": "off",
+        "jsx-a11y/blob":0,
+        "no-empty-pattern": "off"
     }
 };
