@@ -40,7 +40,6 @@ class Home extends Component{
         })
     }
     goSearch(){
-        alert(1);
         console.log(Home.test,'Home.test,');
         console.log(Home.prototype.use,'use');
         this.props.history.push('/search');
