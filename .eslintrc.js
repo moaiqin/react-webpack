@@ -11,9 +11,9 @@ module.exports = {
         "sourceType": "module"
     },
     "plugins": [
-        "react"
+        "react"  //必须下载eslint-plugin-react插件
     ],
     "rules": {
-        "no-alert":2
+        "no-alert": 2
     }
 };

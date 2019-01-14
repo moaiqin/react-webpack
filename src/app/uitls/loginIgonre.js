@@ -41,6 +41,7 @@ export const decoratorByProp = (target,name,descriptor) => {
     target.decoratorByPor = '属性产值';
     console.log(name,'name7777777');
     console.log(descriptor,'decorator')
+    alert(1);
     descriptor.value = () => {
         alert('修饰器修改的函数value');
     }

@@ -7,6 +7,7 @@ import createStore from './app/store/createStore';
 const history = createHistory();
 
 const store = createStore();
+
 render(
     <Provider store={store}>
         <RouterMap history={history}></RouterMap>
