@@ -25,7 +25,7 @@ module.exports = {
                 loader:'babel-loader',
                 options:{
                     "presets": ["react","es2015",'stage-0'],//env 可以代替es2015，不能转化全局api，Promise等
-                    "plugins": ["transform-runtime"] //，需要安装（babel-runtime，里面装有prolyfill包）辅助，转换es2015全局api Promise等，不污染全局，只会引入一次，按需加载对应引用的全局实力，但不能转化非实例api如"ajaj".include('a')。babel-prolyfill，改变全局对象原型链，导入代码过大
+                    "plugins": ["transform-runtime","transform-decorators-legacy"] //，需要安装（babel-runtime，里面装有prolyfill包）辅助，转换es2015全局api Promise等，不污染全局，只会引入一次，按需加载对应引用的全局实力，但不能转化非实例api如"ajaj".include('a')。babel-prolyfill，改变全局对象原型链，导入代码过大
                 }
             },
             {
@@ -35,11 +35,12 @@ module.exports = {
                 loader:[//use
                     {loader:'style-loader'},
                     {loader:'css-loader'},
-                    // {loader:'px2rem-loader'},
+                    {loader:'px2rem-loader',options:{
+                        remUnit:75
+                    }},
                     {loader:'postcss-loader',options:{
                         plugins:[
-                            require('autoprefixer')("last 10 versions"),
-                            require('px2rem')
+                            require('autoprefixer')("last 10 versions")
                         ],
                         // browser:['last 10 versions'] //这样写不生效，传入上面写法生效，必须传versions生效
 
@@ -54,7 +55,9 @@ module.exports = {
                 loader:[//use
                     {loader:'style-loader'},
                     {loader:'css-loader'},
-                    // {loader:'px2rem-loader'},
+                    {loader:'px2rem-loader',options:{
+                        remUnit:75
+                    }},
                     {loader:'postcss-loader',options:{
                         plugins:(loader) => [
                             require('autoprefixer')("last 10 versions")

@@ -102,8 +102,8 @@ module.exports = {
                 loader:'babel-loader',
                 options:{
                     "presets": ["react","env",'stage-0'],//env 可以代替es2015，不能转化全局api，Promise等
-                    "plugins": ["transform-runtime"] //，需要安装（babel-runtime，里面装有prolyfill包）辅助，转换es2015全局api Promise等，不污染全局，只会引入一次，按需加载对应引用的全局实力，但不能转化非实例api如"ajaj".include('a')。babel-prolyfill，改变全局对象原型链，导入代码过大
-                }
+                    "plugins": ["transform-runtime",'transform-decorators-legacy'] //，需要安装（babel-runtime，里面装有prolyfill包）辅助，转换es2015全局api Promise等，不污染全局，只会引入一次，按需加载对应引用的全局实力，但不能转化非实例api如"ajaj".include('a')。babel-prolyfill，改变全局对象原型链，导入代码过大
+                }//transform-decorators-legacy是在对象，或者对象属性中适用修饰器解析
             },
             {
                 test:/\.less$/,

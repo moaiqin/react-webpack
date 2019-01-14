@@ -3,10 +3,18 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import * as Re from '../../actions/test';
 import './index.less';
+import {testByClass,decoratorByProp,decoratorByClass,decoratorByClass1,decoratorByClass2} from '../../uitls/index';
 import showLoading from '../../reducers/configInfo/showLoading';
+
+    
+// @testByClass
+// @decoratorByClass('传参')
+@decoratorByClass1(false)
+@decoratorByClass2(true)
 class Home extends Component{
     constructor(props){
         super(props);
+        this.chuanzhi = '传值';
     }
     render(){
         console.log('hahhah')
@@ -32,9 +40,14 @@ class Home extends Component{
         })
     }
     goSearch(){
+        console.log(Home.test,'Home.test,');
+        console.log(Home.prototype.use,'use');
         this.props.history.push('/search');
     }
+
+    @decoratorByProp
     test() {
+        // console.log(decoratorByProp,'decoratorByProp')
         this.props.test({
             api:'/api/',
             goodsId:1008
