@@ -23,6 +23,6 @@ module.exports = {
         "jsx-a11y/anchor-has-content": "off",
         "jsx-a11y/alt-text": "off",
         "no-empty-pattern": "off",
-        "jsx-ally/anchor-is-valid":"off"
+        "jsx-a11y/anchor-is-valid":"off"
     }
 };
