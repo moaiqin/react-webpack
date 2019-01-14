@@ -19,6 +19,6 @@ module.exports = {
         // "no-alert": 2,
         // "no-console":2
         "eqeqeq":0,
-        " no-script-url":0
+        "no-script-url":0
     }
 };
