@@ -8,7 +8,6 @@ const test2 = (state = {
                 ...state,
                 ...action.data
             }
-        break;
         default: 
             return {
                 ...state
