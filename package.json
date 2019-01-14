@@ -9,7 +9,7 @@
     "start-test": "webpack-dev-server ./config/webapck.config.dev.js --progress --colors",
     "start-dev": "cross-env NODE_ENV=DEV node ./script/start.js",
     "build": "cross-env ptoxy=production   node ./script/build.js",
-    "eslint": "eslint src/ --max-warnings 100 --ext .js,.jsx --color --fix"
+    "eslint": "eslint src/ --ext .js,.jsx --color --fix"
   },
   "author": "莫绍补 <shaobu.mo@weimob.com>",
   "license": "ISC",

@@ -22,7 +22,7 @@ module.exports = {
         "no-script-url":0,
         "jsx-a11y/anchor-has-content": "off",
         "jsx-a11y/alt-text": "off",
-        "jsx-a11y/blob":0,
-        "no-empty-pattern": "off"
+        "no-empty-pattern": "off",
+        "jsx-ally/anchor-is-valid":"off"
     }
 };
