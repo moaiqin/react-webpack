@@ -17,7 +17,7 @@ module.exports = {
     ],
     "rules": {
         // "no-alert": 2,
-        // "no-console":2
+        // "no-console":2,
         "eqeqeq":0,
         "no-script-url":0,
         "jsx-a11y/anchor-has-content": "off",
