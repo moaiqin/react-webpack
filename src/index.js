@@ -10,8 +10,8 @@ const store = createStore();
 const test = () => {
     console.log(100)
     alert(100)
-    console.log(1);
-    console.log(1234)
+    console.log('添加一');
+    console.log(45)
 }
 test();
 render(
