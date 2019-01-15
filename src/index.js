@@ -10,8 +10,8 @@ const store = createStore();
 const test = () => {
     console.log(100)
     alert(100)
-
-    alert(90);
+    alert('测试');
+    console.log(200);
     console.log('moshaobu')
 }
 test();
