@@ -14,6 +14,9 @@ const test = () => {
     console.log(45)
     console.log(1);
     console.log(12222)
+
+
+    alert(4);
 }
 test();
 render(
