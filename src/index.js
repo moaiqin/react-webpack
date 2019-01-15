@@ -11,7 +11,7 @@ const test = () => {
     console.log(100)
     alert(100)
     console.log(1);
-    
+    console.log(1234)
 }
 test();
 render(
