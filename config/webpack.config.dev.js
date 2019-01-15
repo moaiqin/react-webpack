@@ -35,10 +35,9 @@ module.exports = {
                 loader:[//use
                     {loader:'style-loader'},
                     {loader:'css-loader'},
-                    {   loader:'px2rem-loader',options:{
-                            remUnit:75
-                        }
-                    },
+                    {loader:'px2rem-loader',options:{
+                        remUnit:75
+                    }},
                     {loader:'postcss-loader',options:{
                         plugins:[
                             require('autoprefixer')("last 10 versions")
@@ -56,10 +55,9 @@ module.exports = {
                 loader:[//use
                     {loader:'style-loader'},
                     {loader:'css-loader'},
-                    {   loader:'px2rem-loader',options:{
-                            remUnit:75
-                        }
-                    },
+                    {loader:'px2rem-loader',options:{
+                        remUnit:75
+                    }},
                     {loader:'postcss-loader',options:{
                         plugins:(loader) => [
                             require('autoprefixer')("last 10 versions")
