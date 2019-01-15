@@ -44,6 +44,10 @@ module.exports = {
                                 minimize: true //css压缩
                             }
                         },
+                        {   loader:'px2rem-loader',options:{
+                                remUnit:75
+                            }
+                        },
                         {loader:'postcss-loader',options:{
                             plugins:[require('autoprefixer')("last 10 versions")],
                         }},
@@ -62,6 +66,10 @@ module.exports = {
                             loader:'css-loader',
                             options:{
                                 minimize: true //css压缩
+                            }
+                        },
+                        {   loader:'px2rem-loader',options:{
+                                remUnit:75
                             }
                         },
                         {loader:'postcss-loader',options:{
