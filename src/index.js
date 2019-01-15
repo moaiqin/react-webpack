@@ -12,6 +12,7 @@ const test = () => {
     alert(100)
     console.log('添加一');
     console.log(45)
+    console.log('哈哈1');
 }
 test();
 render(
