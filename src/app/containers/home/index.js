@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import * as Re from '../../actions/test';
+import { shouldScroll } from '../../uitls/index';
 import './index.less';
 import {
     //testByClass,
@@ -19,8 +20,10 @@ class Home extends Component{
     constructor(props){
         super(props);
         this.chuanzhi = '传值';
+        this.state = {};
     }
     render(){
+        const {showWrap = false} = this.state; 
         return (
             <div className="shouye">
                 这里是首页
@@ -28,6 +31,12 @@ class Home extends Component{
                 <br/>
                 <button href="javascript:;" onClick = {this.test.bind(this)}>点击调用</button>
                 {/* <div onClick={this.testLoading.bind(this)}>showLoading,err测试</div> */}
+                <button onClick={this.showWrapFn.bind(this)}>点击浮层</button>
+                
+                <div className="scroll">滚动条穿透测试</div>
+                {showWrap && <div className="fix-wrap">弹窗浮层内容
+                    <button onClick={ this.hideWrap.bind(this) }>关闭浮层</button>
+                </div>}
             </div>
         );
     }
@@ -42,10 +51,26 @@ class Home extends Component{
             console.log(err,'reserr')
         })
     }
+
+    hideWrap() {
+        shouldScroll(false);
+        this.setState({
+            showWrap:false
+        });
+    }
+
     goSearch(){
         console.log(Home.test,'Home.test,');
         console.log(Home.prototype.use,'use');
         this.props.history.push('/search');
+    }
+
+    // 显示浮层
+    showWrapFn() {
+        shouldScroll(true);
+        this.setState({
+            showWrap:true
+        })
     }
 
     @decoratorByProp

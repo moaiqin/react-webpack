@@ -4,6 +4,7 @@ import RouterMap from './app/routers/routerMap';
 import createHistory from 'history/createBrowserHistory';
 import {Provider} from 'react-redux';
 import createStore from './app/store/createStore';
+import './index.less';
 const history = createHistory();
 
 const store = createStore();
