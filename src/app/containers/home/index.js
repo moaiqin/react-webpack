@@ -21,7 +21,6 @@ class Home extends Component{
         this.chuanzhi = '传值';
     }
     render(){
-        console.log('hahhah')
         return (
             <div className="shouye">
                 这里是首页

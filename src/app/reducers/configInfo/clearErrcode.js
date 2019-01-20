@@ -1,4 +1,5 @@
 import clearErrType from '../../actions/clearErr';
+console.log(clearErrType,'clearErrType')
 
 export default (state = {
     errcode: 0,

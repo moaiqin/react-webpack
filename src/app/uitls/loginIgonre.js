@@ -43,6 +43,7 @@ export const decoratorByProp = (target,name,descriptor) => {
     console.log(descriptor,'decorator')
     descriptor.value = () => {
         // alert('修饰器修改的函数value');
+        console.log('条用修饰器')
     }
     return descriptor //返回与否都一样
 }

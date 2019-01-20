@@ -7,18 +7,7 @@ import createStore from './app/store/createStore';
 const history = createHistory();
 
 const store = createStore();
-const test = () => {
-    console.log(100)
-    alert(100)
-    console.log('添加一');
-    console.log(45)
-    console.log(1);
-    console.log(12222)
 
-
-    alert(4);
-}
-test();
 render(
     <Provider store={store}>
         <RouterMap history={history}></RouterMap>

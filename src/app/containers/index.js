@@ -15,8 +15,6 @@ class App extends Component {
   
   render() {
     const {showLoading, errInfo} = this.props;
-    console.log(showLoading,'showLoading');
-    console.log(errInfo,'errInfo')
     return (
       <div>
         <h1>App</h1>
