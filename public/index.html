@@ -2,13 +2,92 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>莫绍补测试</title>
     <script>
         window._global = {
             fetch:'http://moshaobu.com'
-        }
+        };
+        (function(win,cof) {
+            var metaEle = document.querySelector('[name="viewport"]');
+            var flexible = cof.flexible || (config.flexible = {});
+            var scale = 0;
+            var dpr = 0;
+            if(metaEle){
+                var contentView = metaEle.getAttribute('content');
+                var viewMatch = contentView.match(/initial\-scale=(\d\.\d)/);
+                if(viewMatch){
+                    scale = parseFloat(viewMatch[1]);
+                    dpr = parseFloat(1/scale);
+                }
+            }
+
+            if(!dpr && !scale) {
+
+                var isIphone = /iphone/ig.test(win.navigator.appVersion.toString());
+                var isAndorid = /android/ig.test(window.navigator.appVersion.toString());
+                var devicePixelRatio = win.devicePixelRatio;
+                if(isIphone) {
+                    if (devicePixelRatio >= 3 && (!dpr || dpr >=3 )){
+                        dpr = 3;
+                    } else if(devicePixelRatio >=2 && (!dpr || dpr >=3)){
+                        dpr = 2;
+                    }else {
+                        dpr = 1;
+                    }
+                }else if(isAndorid && devicePixelRatio > 2){
+                    dpr = 3;
+                }else {
+                    // 其他设备下，仍旧使用1倍的方案
+                dpr = 1;
+                }
+                scale = 1/ dpr;
+            }
+            document.documentElement.setAttribute('data-dpr', dpr)
+            if(!metaEle) {
+                metaEle = document.createElement('meta');
+                metaEle.setAttribute('name','viewport');
+                metaEle.setAttribute('content','initial-scale='+ scale + ', maximum-scale='+ scale + ',minimun-scale=' + scale +',user-scalable=no,viewport-fit=cover');
+                if(document.firstElementChild){
+                    document.firstElementChild.appendChild(metaEle);
+                }else{
+                    var head = document.querySelector('head');
+                    head.appendChild(metaEle);
+                }
+            }
+
+            function refreshRem () {
+                var width = document.documentElement.getBoundingClientRect().width;
+                if(width/dpr > 540) {
+                    width = 540 * dpr;
+                }
+                var rem = width/10;
+                document.querySelector('html').style.fontSize = rem + 'px';
+                win.rem = cof.rem = parseInt(rem);
+            }
+            var tid = null;
+            win.addEventListener('resize', function() {
+                clearTimeout(tid);
+                tid = setTimeout(refreshRem, 300);
+            }, false);
+            win.addEventListener('pageshow', function(e) {
+                if (e.persisted) {
+                    clearTimeout(tid);
+                    tid = setTimeout(refreshRem, 300);
+                }
+            }, false);
+            if(document.readyState && document.readyState === 'complete'){
+                document.body.style.fontSize = 12 * dpr + 'px';
+            }else{
+                document.addEventListener('DOMContentLoaded',function (e){
+                    document.body.style.fontSize = 12 * dpr + 'px';
+                },false)
+            }
+            refreshRem();
+            cof.dpr = win.dpr = dpr;
+            cof.refreshRem = refreshRem;
+        })(window,window['config'] = {})
     </script>
 </head>
 <body>
