@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import * as Re from '../../actions/test';
 import { shouldScroll } from '../../uitls/index';
+import PropTypes from 'prop-types';
 import './index.less';
 import {
     //testByClass,
@@ -22,8 +23,14 @@ class Home extends Component{
         this.chuanzhi = '传值';
         this.state = {};
     }
+    static contextTypes = {
+        name: PropTypes.string,
+        age: PropTypes.func
+    }
     render(){
         const {showWrap = false} = this.state; 
+        const { name, age } = this.context;
+        console.log(this.context,'this.context222')
         return (
             <div className="shouye">
                 这里是首页
@@ -32,8 +39,9 @@ class Home extends Component{
                 <button href="javascript:;" onClick = {this.test.bind(this)}>点击调用</button>
                 {/* <div onClick={this.testLoading.bind(this)}>showLoading,err测试</div> */}
                 <button onClick={this.showWrapFn.bind(this)}>点击浮层</button>
-                
+                <div>context测试  {name} {age()}岁</div>
                 <div className="scroll">滚动条穿透测试</div>
+                <div>{}</div>
                 {showWrap && <div className="fix-wrap">弹窗浮层内容
                     <button onClick={ this.hideWrap.bind(this) }>关闭浮层</button>
                 </div>}

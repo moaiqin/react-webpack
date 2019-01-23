@@ -3,17 +3,42 @@ import {connect} from 'react-redux';
 import clearErrAction from '../actions/clearErr';
 //如果app里面使用了redux的情况下，下app里面点击任何路由都不会跳转，使用withRouter包redux以下解决方案
 import {withRouter} from 'react-router-dom';
+import PropTypes from 'prop-types';
 import {
     Link
 } from 'react-router-dom';
 
 class App extends Component {
+  
+  constructor(props, context) {
+    super(props);
+  }
+  //声明context对象
+  static childContextTypes  = {
+    name: PropTypes.string,
+    age: PropTypes.func
+  }
+
+  static contextTypes = {
+    router: PropTypes.object
+  }
+  //返回Context对象
+  getChildContext() {
+    return {
+      name:'莫绍补',
+      age: () => {
+        return  25
+      }
+    }
+  }
+
   componentWillMount(){
     //界面加载之前先清除err信息
     this.props.clearErrAction().then(()=>{}, ()=>{});
   }
   
   render() {
+    console.log(this.context,'this.context')
     const {showLoading, errInfo} = this.props;
     return (
       <div>
