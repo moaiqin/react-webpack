@@ -49,15 +49,15 @@ class Home extends Component{
         );
     }
     componentDidMount(){
-        console.log(this.props.history,'his.props.history')
         this.props.test({
             api:'moshao.com',
             name:'下辖' 
-        },true ).then((res) => {
-            console.log(res,'res')
-        },(err) => {
-            console.log(err,'reserr')
-        })
+        },true )
+        // .then((res) => {
+        //     console.log(res,'res')
+        // },(err) => {
+        //     console.log(err,'reserr')
+        // })
     }
 
     hideWrap() {
@@ -87,7 +87,7 @@ class Home extends Component{
         this.props.test({
             api:'/api/',
             goodsId:1008
-        }).then(function(res){
+        },true).then(function(res){
             console.log(res,111)
         });
     }

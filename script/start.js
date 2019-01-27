@@ -3,7 +3,7 @@ const webapckDevServer = require('webpack-dev-server');
 const createDevServerConfig = require('../config/webpack.config.dev');
 const complie = webpack(createDevServerConfig);
 const PORT = process.env.PORT? process.env.PORT:"8090"; 
-const HOST = process.env.NODE_HOST || `localhost`;
+const HOST = process.env.NODE_HOST || `0.0.0.0`;
 //解决不能自动刷新，所以在entry入口的每个数组中添加
 for(var entry in createDevServerConfig.entry){
     Array.isArray(createDevServerConfig.entry[entry]) && createDevServerConfig.entry[entry].push(`webpack-dev-server/client?http://localhost:${PORT}/`)

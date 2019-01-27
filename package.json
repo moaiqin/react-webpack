@@ -65,7 +65,8 @@
     "webpack": "^3.12.0",
     "webpack-bundle-analyzer": "^3.0.3",
     "webpack-cli": "^3.1.2",
-    "webpack-dev-server": "^2.11.3"
+    "webpack-dev-server": "^2.11.3",
+    "whatwg-fetch": "^3.0.0"
   },
   "repository": "https://github.com/moaiqin/react-webpack.git",
   "pre-commit": [

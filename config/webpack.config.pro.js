@@ -6,7 +6,7 @@ const webpackEatractTextPligin = require('extract-text-webpack-plugin');
 const {BundleAnalyzerPlugin} = require('webpack-bundle-analyzer');//打包可视化工具，可以看到每一模块的大小
 module.exports = {
     entry:{
-        main: appPaths.inputPath,
+        main: [appPaths.inputPath],
         vendor:Object.keys(pack.dependencies)
     },
     output:{
@@ -44,6 +44,11 @@ module.exports = {
                                 minimize: true //css压缩
                             }
                         },
+                        {
+                            loader:'px2rem-loader',options:{
+                                remUnit:75
+                            }
+                        },
                         {loader:'postcss-loader',options:{
                             plugins:[require('autoprefixer')("last 10 versions")],
                         }},
@@ -64,6 +69,11 @@ module.exports = {
                                 minimize: true //css压缩
                             }
                         },
+                        {
+                            loader:'px2rem-loader',options:{
+                                remUnit:75
+                            }
+                        },
                         {loader:'postcss-loader',options:{
                             plugins:[require('autoprefixer')("last 10 versions")],
                         }}
@@ -82,13 +92,13 @@ module.exports = {
                     }
                 ]
             },
-            {//对于import a.html里面的图片不好处理,打包时不会进到相应的文件，所以使用下面的方式
-                test:/\.html$/,
-                exclude: appPaths.appNodeModules,
-                loader:[
-                    {loader:'html-withimg-loader'}
-                ]
-            }
+            // {//对于import a.html里面的图片不好处理,打包时不会进到相应的文件，所以使用下面的方式   如果使用html过滤器过滤的化，在html文件里面不能使用ejs语法，也不能使用htmlwebpackplugin文件
+            //     test:/\.html$/,
+            //     exclude: appPaths.appNodeModules,
+            //     loader:[
+            //         {loader:'html-withimg-loader'}
+            //     ]
+            // }
         ]
     },
     plugins:[
@@ -118,7 +128,11 @@ module.exports = {
         }),
         //对css文件分离
         new webpackEatractTextPligin({
-            filename:'css/[chunkhash:8].css'
+            filename:'css/[chunkhash:8].css',
+            inject : true,
+            ejsVarInject: {
+                _global: '<%-data>'
+            }
         }),
         new webpack.DefinePlugin({
             'process.env': {

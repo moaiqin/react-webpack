@@ -34,7 +34,20 @@ class App extends Component {
 
   componentWillMount(){
     //界面加载之前先清除err信息
-    this.props.clearErrAction().then(()=>{}, ()=>{});
+    this.props.clearErrAction();
+  }
+  componentDidMount() {
+    let reg = /(Y+)\s(\w+)/ig;
+    let str = 'YYYsahd';
+    let a = str.replace(reg,($1,$2,$3) =>{
+      //$1 表示匹配到的字符串
+      //$2 表示第一个括号匹配到的字符串
+      //$3 表示下一个括号的=匹配到的字符串
+
+      return '499'
+    });
+  //  let a = str.replace(reg,'$1$2')
+    console.log(a,'str')
   }
   
   render() {

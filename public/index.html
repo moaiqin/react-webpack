@@ -4,12 +4,17 @@
     <meta charset="UTF-8">
     <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>莫绍补测试</title>
+    <title><%= htmlWebpackPlugin.options.title %></title>
     <script>
-        window._global = {
-            fetch:'http://moshaobu.com'
-        };
-        (function(win,cof) {
+        <% if (htmlWebpackPlugin.options.ejsVarInject) { %>
+            window._global = <%= htmlWebpackPlugin.options.ejsVarInject['_global'] %>
+        <% } else{%>
+            window._global = {
+                prefix:'moshaobu.com',
+                prefixAPI:'/api'
+            }
+        <% } %>   
+        ;(function(win,cof) {
             var metaEle = document.querySelector('[name="viewport"]');
             var flexible = cof.flexible || (config.flexible = {});
             var scale = 0;

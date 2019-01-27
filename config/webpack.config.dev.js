@@ -77,19 +77,22 @@ module.exports = {
                     }
                 ]
             },
-            {//对于import a.html里面的图片不好处理,打包时不会进到相应的文件，所以使用下面的方式
-                test:/\.html$/,
-                exclude: appPaths.appNodeModules,
-                loader:[
-                    {loader:'html-withimg-loader'}
-                ]
-            }
+            // {//对于import a.html里面的图片不好处理,打包时不会进到相应的文件，所以使用下面的方式 如果使用html过滤器过滤的化，在html文件里面不能使用ejs语法，也不能使用htmlwebpackplugin文件
+            //     test:/\.html$/,
+            //     exclude: appPaths.appNodeModules,
+            //     loader:[
+            //         {loader:'html-withimg-loader'}
+            //     ]
+            // }
         ]
     },
     plugins:[
         new htmlWebpackPlugin({
             template: appPaths.inputViewPath,
             filename:'index.html',
+            inject: 'body',
+            title:'末梢粗',
+            ejsVarInject:''
         }),
         new webpack.HotModuleReplacementPlugin(),
         new openBrowserWebpackPlugin({
