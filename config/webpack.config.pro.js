@@ -120,7 +120,7 @@ module.exports = {
         new htmlWebpackPlugin({
             template: appPaths.inputViewPath,
             chunks:['vendor','main'],
-            filename:'index.html',
+            filename:'index.ejs',
             minify: { //压缩HTML文件
                 removeComments: true, //移除HTML中的注释
                 collapseWhitespace: false //删除空白符与换行符
