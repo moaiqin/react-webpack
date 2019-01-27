@@ -46,6 +46,7 @@ class App extends Component {
 
       return '499'
     });
+    console.log(a);
   //  let a = str.replace(reg,'$1$2')
   }
   
