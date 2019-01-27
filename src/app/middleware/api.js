@@ -2,7 +2,7 @@ import 'whatwg-fetch';
 const fetchRequest = ({
     api,
     params,
-    method = 'post',
+    method,
     timeout = 4000,
     err
 }) => {
@@ -73,14 +73,45 @@ export const REQUEST = 0;
 export const SUCCESS = 1;
 export const FAIL = 2;
 
+//对一些数据进行过滤
+const handelStatus = (res) => {
+    if(!res){
+        return Promise.reject({
+            errcode:-1,
+            errmsg:'网络异常'
+        });
+    }
+    if(res.ok){
+        return {
+            ...res
+        }
+    }
+    return Promise.reject({
+        errcode: res.status,
+        errmsg: res.statusText,
+        errinfo: res
+    });
+}
+
+//对请求数据进行返回
+const handelReponse = (res) => {
+    const errcode = res.errcode || res.code;
+    if(errcode == 0){
+        return {...res}
+    }
+    return Promise.reject({
+        errcode: errcode,
+        errmsg: res.errmsg,
+        errinfo: res
+    });
+}
+
 const storeApplyMiddleware = (store) => next => action =>{
-    console.log(action,'actionactionactionactionaction')
     const callAction = action[CALL];
     if(callAction === undefined) {
         next(action);
         return;
     }
-    
     const { showLoading,api,method='post',params,timeout, types,err} = callAction;
     if(!Array.isArray(types) || (Array.isArray(types) && types.length !== 3)) {
         throw Error('action types errcode');
@@ -100,8 +131,7 @@ const storeApplyMiddleware = (store) => next => action =>{
         method,
         timeout,
         err
-    }).then((response) => {
-        console.log(response,'response')
+    }).then(handelStatus).then(handelReponse).then((response) => {
         let newStatus = {
             type:successType,
             showLoading:0,

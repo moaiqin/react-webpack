@@ -1,9 +1,9 @@
 import clearErrType from '../../actions/clearErr';
-console.log(clearErrType,'clearErrType')
 
 export default (state = {
     errcode: 0,
-    errmsg: ''
+    errmsg: '',
+    errinfo: {}
 }, action) => {
     if(action.type === clearErrType){
         return {
@@ -11,11 +11,11 @@ export default (state = {
             errmsg: ''
         }
     }
-    const {errcode, errmsg} = action;
-    const errState = {
-        ...state,
-    }
-    errcode && (errState.errcode = errcode);
-    errmsg && (errState.errmsg = errmsg);
-    return errState;
+    const {errcode, errmsg, errinfo} = action;
+    const err = Object.assign({},state,{
+        errcode,
+        errmsg,
+        errinfo
+    });
+    return err;
 }

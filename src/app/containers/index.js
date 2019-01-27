@@ -47,11 +47,9 @@ class App extends Component {
       return '499'
     });
   //  let a = str.replace(reg,'$1$2')
-    console.log(a,'str')
   }
   
   render() {
-    console.log(this.context,'this.context')
     const {showLoading, errInfo} = this.props;
     return (
       <div>
@@ -63,7 +61,7 @@ class App extends Component {
         </ul>
         <div>{showLoading? '加载中...':''}</div>
         {!!errInfo.errcode && <div>
-          <h1>页面出错啦</h1>
+          <h1>{errInfo.errmsg}</h1>
           <p>errcode:{errInfo.errcode}</p>
         </div>}
         {this.props.children}
