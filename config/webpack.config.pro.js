@@ -4,6 +4,8 @@ const pack = require(appPaths.packagePath);
 const htmlWebpackPlugin = require('html-webpack-plugin');
 const webpackEatractTextPligin = require('extract-text-webpack-plugin');
 const {BundleAnalyzerPlugin} = require('webpack-bundle-analyzer');//打包可视化工具，可以看到每一模块的大小
+//webpack.optimize.UglifyJsPlugin对css文件不能压缩了，并且css-loader 的minimize: true选项也被废弃，使用以下
+// const OptimizeCssnanoPlugin = require('@intervolga/optimize-cssnano-plugin'); 
 module.exports = {
     entry:{
         main: [appPaths.inputPath],
@@ -11,8 +13,8 @@ module.exports = {
     },
     output:{
         path:appPaths.outputPath,
-        chunkFilename: 'js/[name].[chunkhash:8].js', //这是根据路由打包不同的模块,按需加载
-        filename:'js/[name].[chunkhash:8].js',
+        chunkFilename: 'public/js/[name].[chunkhash:8].js', //这是根据路由打包不同的模块,按需加载
+        filename:'public/js/[name].[chunkhash:8].js',
         // publicPath:'moshaobu.com/'
     },
     resolve:{
@@ -40,9 +42,9 @@ module.exports = {
                     use:[//use
                         {
                             loader:'css-loader',
-                            options:{
-                                minimize: true //css压缩
-                            }
+                            // options:{
+                            //     minimize: true //css压缩
+                            // }
                         },
                         {
                             loader:'px2rem-loader',options:{
@@ -50,7 +52,9 @@ module.exports = {
                             }
                         },
                         {loader:'postcss-loader',options:{
-                            plugins:[require('autoprefixer')("last 10 versions")],
+                            plugins:[require('autoprefixer')("last 10 versions"),require('cssnano')({
+                                preset: 'default'
+                            })],
                         }},
                         {loader:'less-loader'}
                     ]
@@ -65,9 +69,9 @@ module.exports = {
                     use:[//use
                         {
                             loader:'css-loader',
-                            options:{
-                                minimize: true //css压缩
-                            }
+                            // options:{
+                            //     minimize: true //css压缩已经废弃
+                            // }
                         },
                         {
                             loader:'px2rem-loader',options:{
@@ -75,7 +79,10 @@ module.exports = {
                             }
                         },
                         {loader:'postcss-loader',options:{
-                            plugins:[require('autoprefixer')("last 10 versions")],
+                            //cssnano 压缩css文件     
+                            plugins:[require('autoprefixer')("last 10 versions"),require('cssnano')({
+                                preset: 'default'
+                            })],
                         }}
                     ]
                 })
@@ -87,7 +94,7 @@ module.exports = {
                 loader:[
                     {loader:'url-loader',options:{
                         limit:1000,//图片大小小于这个的话就转换成base64
-                        name:'images/[name].[ext]'
+                        name:'/public/images/[name].[ext]'
                         }
                     }
                 ]
@@ -105,12 +112,12 @@ module.exports = {
         new webpack.optimize.CommonsChunkPlugin({
             name: 'vendor', //默认把所有模块公共代码和到vendor，然后插入index.html
             minChunks:2,
-            filename: 'js/[name].[chunkhash].js'
+            filename: 'public/js/[name].[chunkhash].js'
         }), //代码抽取公共
         new webpack.optimize.CommonsChunkPlugin({
             name: ['vendor','main'], //再把把vendor和main公共的代码提取出来赋值给main,这样vendor就只剩node-module包下面的东西了
             minChunks:2,
-            filename: 'js/[name].[chunkhash].js'
+            filename: 'public/js/[name].[chunkhash].js'
         }), //代码抽取公共
         new webpack.optimize.UglifyJsPlugin({// webpack4的话自动会压缩，废除这个插件，不然报错，js会压缩
             compress: {
@@ -120,19 +127,21 @@ module.exports = {
         new htmlWebpackPlugin({
             template: appPaths.inputViewPath,
             chunks:['vendor','main'],
+            // chunks:['main'],
             filename:'index.ejs',
             minify: { //压缩HTML文件
                 removeComments: true, //移除HTML中的注释
                 collapseWhitespace: false //删除空白符与换行符
+            },
+            inject : true,
+            ejsVarInject: {
+                _global: '<%-data %>'
             }
         }),
         //对css文件分离
         new webpackEatractTextPligin({
-            filename:'css/[chunkhash:8].css',
-            inject : true,
-            ejsVarInject: {
-                _global: '<%-data>'
-            }
+            filename:'public/css/[name][chunkhash:8].css',
+            allChunks:true
         }),
         new webpack.DefinePlugin({
             'process.env': {
