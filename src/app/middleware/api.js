@@ -131,6 +131,7 @@ const storeApplyMiddleware = (store) => next => action =>{
         method,
         timeout,
         err
+        
     }).then(handelStatus).then(handelReponse).then((response) => {
         let newStatus = {
             type:successType,
