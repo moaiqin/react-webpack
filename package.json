@@ -25,7 +25,8 @@
     "react-router-dom": "^4.3.1",
     "react-router-scroll": "^0.4.4",
     "redux": "^4.0.1",
-    "redux-thunk": "^2.3.0"
+    "redux-thunk": "^2.3.0",
+    "whatwg-fetch": "^3.0.0"
   },
   "devDependencies": {
     "@intervolga/optimize-cssnano-plugin": "^1.0.6",
@@ -67,8 +68,7 @@
     "webpack": "^3.12.0",
     "webpack-bundle-analyzer": "^3.0.3",
     "webpack-cli": "^3.1.2",
-    "webpack-dev-server": "^2.11.3",
-    "whatwg-fetch": "^3.0.0"
+    "webpack-dev-server": "^2.11.3"
   },
   "repository": "https://github.com/moaiqin/react-webpack.git",
   "pre-commit": [
