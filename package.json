@@ -14,9 +14,7 @@
   "author": "莫绍补 <shaobu.mo@weimob.com>",
   "license": "ISC",
   "dependencies": {
-    "antd": "^3.10.1",
     "history": "^4.7.2",
-    "http-proxy": "^1.17.0",
     "prop-types": "^15.6.2",
     "react": "^16.5.2",
     "react-dom": "^16.5.2",
